@@ -30,8 +30,8 @@ export class DynamicFormComponent implements OnInit {
 
   saveData(): void {
     if (this.form.valid) {
-      this.tableData.push(this.form.value);
-      console.log(this.tableData)
+      const newObj = Object.entries(this.form.value).reduce((acc, [key, value]) => ({ ...acc, [key.replace(/\s+/g, '')]: value }), {});
+      this.tableData.push(newObj);
       this.form.reset();
     } else {
       alert('Please fill in all required fields.');
