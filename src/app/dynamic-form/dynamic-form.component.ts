@@ -10,9 +10,9 @@ export class DynamicFormComponent implements OnInit {
 
   form: FormGroup;
   jsonData = [ 
-    { ControlName: 'FirstName', Position: 1, IsRequired: true },
-    { ControlName: 'LastName', Position: 2, IsRequired: false },
-    { ControlName: 'ContactNo', Position: 3, IsRequired: true },
+    { ControlName: 'First Name', Position: 1, IsRequired: true },
+    { ControlName: 'Last Name', Position: 2, IsRequired: false },
+    { ControlName: 'Contact No', Position: 3, IsRequired: true },
     { ControlName: 'Email', Position: 4, IsRequired: false },
     { ControlName: 'Address', Position: 5, IsRequired: false }
   ]; 
