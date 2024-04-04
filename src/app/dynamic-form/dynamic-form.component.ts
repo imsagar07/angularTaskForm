@@ -17,21 +17,20 @@ export class DynamicFormComponent implements OnInit {
     { ControlName: 'Address', Position: 5, IsRequired: false }
   ]; 
   tableData: any[] = []; 
-
+  tableHeaders: string[] = this.jsonData.map(item => item.ControlName);
   constructor() { }
 
   ngOnInit(): void {
     this.form = new FormGroup({}); 
     this.jsonData.forEach(field => { 
-      this.form.addControl(field.ControlName.toLowerCase(), 
+      this.form.addControl(field.ControlName, 
         new FormControl('', field.IsRequired ? Validators.required : null));
     });
   }
 
   saveData(): void {
-    if (this.form.valid) {
-      const newObj = Object.entries(this.form.value).reduce((acc, [key, value]) => ({ ...acc, [key.replace(/\s+/g, '')]: value }), {});
-      this.tableData.push(newObj);
+    if (this.form.valid) { 
+      this.tableData.push(this.form.value);
       this.form.reset();
     } else {
       alert('Please fill in all required fields.');
