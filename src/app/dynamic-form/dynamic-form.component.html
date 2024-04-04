@@ -1,10 +1,11 @@
-<div  class="mainDiv">
+
+<div class="mainDiv">
     <div class="login-box">
         <h2>Enter Details</h2>
         <form [formGroup]="form" (ngSubmit)="saveData()">
             <div *ngFor="let field of jsonData">
                 <div class="user-box">
-                    <input type="text" [formControlName]="field.ControlName.toLowerCase()">
+                    <input type="text" [formControlName]="field.ControlName">
                     <label>{{ field.ControlName }}</label>
                 </div>
 
@@ -13,34 +14,22 @@
                 <button class="btn " type="submit">Save</button>
                 <button class="btn" type="button" (click)="clearForm()" style="margin-left: 5px;">Clear</button>
             </div> 
-            
         </form>
     </div>
-
 
     <div class="tables" *ngIf="tableData.length">
         <h2>User Data</h2>
         <table class="content-table" >
             <thead>
               <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Contact No</th>
-                <th>Email</th>
-                <th>Address</th>
+                <th *ngFor="let header of tableHeaders">{{ header }}</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody> 
               <tr class="active-row" *ngFor="let row of tableData">
-                <td>{{row.firstname}}</td>
-                <td>{{row?.lastname}}</td>
-                <td>{{row?.contactno}}</td>
-                <td>{{row?.email}}</td>
-                <td>{{row?.address}}</td>
+                <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
               </tr>
             </tbody>
           </table>
     </div>
-
-   
 </div>
