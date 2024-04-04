@@ -1,35 +1,42 @@
 
-<div class="mainDiv">
-    <div class="login-box">
-        <h2>Enter Details</h2>
+<div class="body" style="overflow-x: hidden;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 mt-5 text-center" style=" display: flex; justify-content: center; align-items: center;">
         <form [formGroup]="form" (ngSubmit)="saveData()">
-            <div *ngFor="let field of jsonData">
-                <div class="user-box">
-                    <input type="text" [formControlName]="field.ControlName">
-                    <label>{{ field.ControlName }}</label>
-                </div>
-
-            </div>
-            <div class="myBtns">
-                <button class="btn " type="submit">Save</button>
-                <button class="btn" type="button" (click)="clearForm()" style="margin-left: 5px;">Clear</button>
-            </div> 
-        </form>
-    </div>
-
-    <div class="tables" *ngIf="tableData.length">
-        <h2>User Data</h2>
-        <table class="content-table" >
+        <div class="form ">
+          <h1 class="subtitle">Enter Data</h1>
+          <div class="input-container mt-3 mb-2" *ngFor="let field of jsonData">
+            <input id="firstname" class="input" type="text" placeholder="{{field.ControlName}}"  [formControlName]="field.ControlName">
+          </div>
+          <div class="d-flex gap-1">
+            <button type="text" class="submit" type="submit">submit</button>
+            <button type="text" class="submit" (click)="clearForm()">Clear</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="col-md-7 mt-5 m-auto" style="overflow-x:scroll;" *ngIf="tableData.length">
+        <div class="container-fluid" style="margin: 0 20px;">
+          <h2>User Data</h2>
+          <table class="table">
             <thead>
               <tr>
-                <th *ngFor="let header of tableHeaders">{{ header }}</th>
+                <th *ngFor="let header of tableHeaders" style="background-color: #009879;
+                     color: #ffffff;
+                     text-align: left;
+                     font-weight: bold;">{{ header }}</th>
               </tr>
             </thead>
-            <tbody> 
-              <tr class="active-row" *ngFor="let row of tableData">
+            <tbody>
+              <tr *ngFor="let row of tableData">
                 <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
